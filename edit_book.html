@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}
+Edit Book
+{% endblock %}
+{% block content %}
+<h1> Edit Book</h1>
+<form method="POST">
+    <p>
+        <label> Book Title</label><br>
+        <input type="text" name="title" value="{{ book.title }} required">
+    </p>
+    <p>
+        <label> Author</label><br>
+        <input type="text" name="author" value="{{ book.author }}" required>
+    </p>
+    <p>
+        <label>Price</label><br>
+        <input type="number" name="price" step="0.01" value="{{ book.price }}" required>
+    </p>
+    <p>
+
+        <label>
+            Status
+        </label>
+
+        <br>
+
+        <select name="status">
+
+            <option
+                value="Available"
+                {% if book.status == "Available" %}
+                selected
+                {% endif %}
+            >
+
+                Available
+
+            </option>
+
+
+            <option
+                value="Borrowed"
+                {% if book.status == "Borrowed" %}
+                selected
+                {% endif %}
+            >
+
+                Borrowed
+
+            </option>
+
+        </select>
+    <button type="submit">Update Book</button>
+</form>
+<br>
+<a class="btn" href="{{ url_for('index') }}">Back to Books</a>
+{% endblock %}
